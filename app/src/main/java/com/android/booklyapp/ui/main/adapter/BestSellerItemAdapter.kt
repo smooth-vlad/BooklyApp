@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.booklyapp.data.ebook_api.classes.BestSeller
 import com.android.booklyapp.databinding.BestSellerItemBinding
 import com.android.booklyapp.ui.main.viewmodel.MainViewModel
+import com.bumptech.glide.Glide
 
 class BestSellerItemAdapter(private val data: List<BestSeller>) : RecyclerView.Adapter<BestSellerItemAdapter.ViewHolder>() {
 
@@ -29,6 +30,9 @@ class BestSellerItemAdapter(private val data: List<BestSeller>) : RecyclerView.A
         holder.binding.priceTextView.text = "${item.price}€"
         holder.binding.ratingTextView.text = item.rate.score.toString()
         holder.binding.ratingAdditionalTextView.text = "(${item.rate.amount})"
+        Glide.with(holder.binding.root)
+            .load(item.image)
+            .into(holder.binding.coverImageView)
     }
 
     override fun getItemCount(): Int {

@@ -7,10 +7,12 @@
     android:orientation="horizontal"
     android:paddingVertical="8dp">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/cover_image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="72dp"
+        app:shapeAppearanceOverlay="@style/SmallRoundedImageOverlay"
+        android:layout_height="108dp"
+        android:scaleType="centerCrop"
         android:layout_alignParentStart="true"
         android:src="@drawable/best1" />
 
