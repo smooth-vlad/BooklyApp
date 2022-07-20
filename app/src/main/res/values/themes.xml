@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.BooklyApp" parent="Theme.AppCompat.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorSurface">@color/background</item>
+        <item name="android:background">?attr/colorSurface</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Theme.BooklyApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="background">?attr/colorSurface</item>
+    </style>
+
+    <style name="Theme.BooklyApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" >
+        <item name="background">?attr/colorSurface</item>
+    </style>
+</resources>
