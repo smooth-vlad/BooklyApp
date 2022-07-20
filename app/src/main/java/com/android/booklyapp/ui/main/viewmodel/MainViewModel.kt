@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.booklyapp.data.ebook_api.EbookApiService
-import com.android.booklyapp.data.ebook_api.classes.BestSeller
+import com.android.booklyapp.data.ebook_api.classes.Book
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,7 +15,7 @@ class MainViewModel @Inject constructor(private val api: EbookApiService) : View
         const val TAG = "MainViewModel"
     }
 
-    var bestSellers = MutableLiveData<List<BestSeller>>()
+    val bestSellers = MutableLiveData<List<Book>>()
 
     init {
         viewModelScope.launch {

@@ -2,7 +2,7 @@ package com.android.booklyapp.data.ebook_api.classes
 
 import com.google.gson.annotations.SerializedName
 
-data class BestSeller(
+data class Book(
     @SerializedName("id") var id: Int,
     @SerializedName("title") var title: String,
     @SerializedName("author") var author: String,

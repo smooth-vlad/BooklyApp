@@ -2,16 +2,16 @@ package com.android.booklyapp.ui.details.viewmodel
 
 import android.app.Activity
 import android.util.Log
-import androidx.lifecycle.AbstractSavedStateViewModelFactory
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import androidx.savedstate.SavedStateRegistryOwner
 import com.android.booklyapp.data.ebook_api.EbookApiService
+import com.android.booklyapp.data.ebook_api.classes.Book
+import com.android.booklyapp.data.ebook_api.classes.BookImage
+import com.android.booklyapp.ui.main.viewmodel.MainViewModel
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class DetailsViewModel @AssistedInject constructor(
@@ -36,7 +36,30 @@ class DetailsViewModel @AssistedInject constructor(
         }
     }
 
+    val book = MutableLiveData<Book>()
+    val similar = MutableLiveData<List<BookImage>>()
+
     init {
         Log.d(TAG, bookId.toString())
+
+        viewModelScope.launch {
+            try {
+                val response = api.getBestSellers().find { it.id == bookId }
+                book.postValue(response)
+                Log.d(TAG, "bestSellers: SUCCESS")
+            } catch (throwable : Throwable) {
+                Log.e(TAG, throwable.toString())
+            }
+        }
+
+        viewModelScope.launch {
+            try {
+                val response = api.getSimilar()
+                similar.postValue(response)
+                Log.d(TAG, "Similar: SUCCESS")
+            } catch (throwable : Throwable) {
+                Log.e(TAG, throwable.toString())
+            }
+        }
     }
 }

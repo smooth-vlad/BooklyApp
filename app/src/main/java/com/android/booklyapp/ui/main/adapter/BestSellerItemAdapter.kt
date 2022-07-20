@@ -2,20 +2,16 @@ package com.android.booklyapp.ui.main.adapter
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.android.booklyapp.data.ebook_api.classes.BestSeller
+import com.android.booklyapp.data.ebook_api.classes.Book
 import com.android.booklyapp.databinding.BestSellerItemBinding
 import com.android.booklyapp.ui.details.view.DetailsActivity
-import com.android.booklyapp.ui.main.viewmodel.MainViewModel
 import com.bumptech.glide.Glide
 
-class BestSellerItemAdapter(private val data: List<BestSeller>) : RecyclerView.Adapter<BestSellerItemAdapter.ViewHolder>() {
+class BestSellerItemAdapter(private val data: List<Book>) : RecyclerView.Adapter<BestSellerItemAdapter.ViewHolder>() {
 
     companion object {
         const val TAG = "BestSellerItemAdapter"

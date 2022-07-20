@@ -6,9 +6,11 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import com.android.booklyapp.R
+import com.android.booklyapp.data.ebook_api.classes.Book
 import com.android.booklyapp.databinding.ActivityDetailsBinding
 import com.android.booklyapp.databinding.ActivityMainBinding
 import com.android.booklyapp.ui.App
+import com.android.booklyapp.ui.details.adapter.SimilarItemAdapter
 import com.android.booklyapp.ui.details.viewmodel.DetailsViewModel
 import com.android.booklyapp.ui.main.adapter.BestSellerItemAdapter
 import javax.inject.Inject
@@ -37,9 +39,27 @@ class DetailsActivity : AppCompatActivity() {
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel.book.observe(this) {
+            setBookFields(it)
+        }
+
+        viewModel.similar.observe(this) {
+            binding.similarRecyclerView.adapter = SimilarItemAdapter(it)
+        }
+
         binding.toolbar.title = ""
 
         setSupportActionBar(binding.toolbar)
+    }
+
+    private fun setBookFields(book: Book) {
+        binding.apply {
+            detailsTitleTextView.text = book.title
+            detailsAuthorTextView.text = book.author
+            detailsRatingTextView.text = book.rate.score.toString()
+            detailsRatingAdditionalTextView.text = "(${book.rate.amount})"
+            buyButton.text = "${book.price}€"
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

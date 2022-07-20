@@ -17,10 +17,146 @@
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/menu_details"
             app:navigationIcon="@drawable/ic_baseline_close_24"
-            app:popupTheme="@style/Theme.BooklyApp.PopupOverlay" >
+            app:popupTheme="@style/Theme.BooklyApp.PopupOverlay">
 
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_horizontal_margins"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/similar_title_text_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/cover_image_view"
+                android:layout_width="180dp"
+                android:layout_height="254dp"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"
+                android:src="@drawable/car1"
+                app:shapeAppearanceOverlay="@style/BigRoundedImageOverlay" />
+
+            <TextView
+                android:id="@+id/details_title_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/gt_sectra_fine"
+                android:maxLines="2"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                tools:text="The Jungle Book" />
+
+            <TextView
+                android:id="@+id/details_author_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="6dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat_medium"
+                android:maxLines="1"
+                android:textAlignment="center"
+                android:textColor="@color/white_darker"
+                android:textSize="18sp"
+                tools:text="Rudyard Kipling" />
+
+            <LinearLayout
+                android:id="@+id/details_rating_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/details_rating_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textSize="16sp"
+                    tools:text="4.8" />
+
+                <TextView
+                    android:id="@+id/details_rating_additional_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="@color/white_darker"
+                    android:textSize="14sp"
+                    tools:text="(2390)" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/details_buy_layout"
+                android:layout_width="300dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/buy_button"
+                    style="@style/ComposeButtonLeft"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    tools:text="19.99$" />
+
+                <Button
+                    android:id="@+id/preview_button"
+                    style="@style/ComposeButtonRight"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/free_preview_button_text" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/similar_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/screen_horizontal_margins"
+            android:layout_marginBottom="18dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="@string/similar_books_title"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/similar_recycler_view"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/similar_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/screen_vertical_margins"
+            android:orientation="horizontal"
+            android:layout_marginStart="24dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/similar_item" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

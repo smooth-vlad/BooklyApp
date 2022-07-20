@@ -3,4 +3,6 @@
     <string name="action_search">Search</string>
     <string name="action_cart">Cart</string>
     <string name="best_seller_title">Best seller</string>
+    <string name="free_preview_button_text">Free preview</string>
+    <string name="similar_books_title">You can also like</string>
 </resources>
