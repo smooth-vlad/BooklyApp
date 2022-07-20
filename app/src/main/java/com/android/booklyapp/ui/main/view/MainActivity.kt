@@ -34,6 +34,9 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.bestSellers.observe(this) {
             binding.bestSellerRecyclerView.adapter = BestSellerItemAdapter(it)
+
+            binding.shimmerBestSeller.visibility = View.GONE
+            binding.bestSellerRecyclerView.visibility = View.VISIBLE
         }
 
         viewModel.carouselBooks.observe(this) { carouselItems ->
@@ -56,6 +59,9 @@ class MainActivity : AppCompatActivity() {
 
             })
             binding.carousel.refresh()
+
+            binding.shimmerCarousel.visibility = View.GONE
+            binding.carouselLayout.visibility = View.VISIBLE
         }
 
         binding.toolbar.title = ""

@@ -6,6 +6,7 @@
         <item name="colorPrimaryDark">#BC674E</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSurface">@color/background</item>
+        <item name="colorSurfaceVariant">@color/placeholder</item>
         <item name="android:background">?attr/colorSurface</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorSurface</item>

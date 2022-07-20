@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import com.android.booklyapp.R
 import com.android.booklyapp.data.ebook_api.classes.Book
@@ -13,6 +14,7 @@ import com.android.booklyapp.ui.App
 import com.android.booklyapp.ui.details.adapter.SimilarItemAdapter
 import com.android.booklyapp.ui.details.viewmodel.DetailsViewModel
 import com.android.booklyapp.ui.main.adapter.BestSellerItemAdapter
+import com.bumptech.glide.Glide
 import javax.inject.Inject
 
 class DetailsActivity : AppCompatActivity() {
@@ -41,10 +43,16 @@ class DetailsActivity : AppCompatActivity() {
 
         viewModel.book.observe(this) {
             setBookFields(it)
+
+            binding.shimmerBookInfo.visibility = View.GONE
+            binding.bookInfoLayout.visibility = View.VISIBLE
         }
 
         viewModel.similar.observe(this) {
             binding.similarRecyclerView.adapter = SimilarItemAdapter(it)
+
+            binding.shimmerSimilar.visibility = View.GONE
+            binding.similarRecyclerView.visibility = View.VISIBLE
         }
 
         binding.toolbar.title = ""
@@ -54,6 +62,9 @@ class DetailsActivity : AppCompatActivity() {
 
     private fun setBookFields(book: Book) {
         binding.apply {
+            Glide.with(this@DetailsActivity)
+                .load(book.image)
+                .into(coverImageView)
             detailsTitleTextView.text = book.title
             detailsAuthorTextView.text = book.author
             detailsRatingTextView.text = book.rate.score.toString()
