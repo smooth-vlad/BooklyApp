@@ -2,4 +2,6 @@
 <resources>
 
     <string name="best_seller_title">Самые продаваемые</string>
+    <string name="action_search">Поиск</string>
+    <string name="action_cart">Корзина</string>
 </resources>

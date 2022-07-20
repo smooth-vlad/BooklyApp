@@ -1,12 +1,17 @@
 package com.android.booklyapp.ui.main.adapter
 
+import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.android.booklyapp.data.ebook_api.classes.BestSeller
 import com.android.booklyapp.databinding.BestSellerItemBinding
+import com.android.booklyapp.ui.details.view.DetailsActivity
 import com.android.booklyapp.ui.main.viewmodel.MainViewModel
 import com.bumptech.glide.Glide
 
@@ -33,6 +38,15 @@ class BestSellerItemAdapter(private val data: List<BestSeller>) : RecyclerView.A
         Glide.with(holder.binding.root)
             .load(item.image)
             .into(holder.binding.coverImageView)
+
+        holder.binding.root.setOnClickListener {
+            val intent = Intent(it.context, DetailsActivity::class.java)
+            val bundle = Bundle().apply {
+                putInt(DetailsActivity.BOOK_ID, item.id)
+            }
+            intent.putExtras(bundle)
+            ContextCompat.startActivity(it.context, intent, null)
+        }
     }
 
     override fun getItemCount(): Int {
