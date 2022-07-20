@@ -64,6 +64,7 @@ class DetailsActivity : AppCompatActivity() {
         binding.apply {
             Glide.with(this@DetailsActivity)
                 .load(book.image)
+                .placeholder(R.drawable.placeholder)
                 .into(coverImageView)
             detailsTitleTextView.text = book.title
             detailsAuthorTextView.text = book.author

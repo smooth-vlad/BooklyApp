@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.android.booklyapp.R
 import com.android.booklyapp.data.ebook_api.classes.Book
 import com.android.booklyapp.databinding.BestSellerItemBinding
 import com.android.booklyapp.ui.details.view.DetailsActivity
@@ -33,6 +34,7 @@ class BestSellerItemAdapter(private val data: List<Book>) : RecyclerView.Adapter
         holder.binding.ratingAdditionalTextView.text = "(${item.rate.amount})"
         Glide.with(holder.binding.root)
             .load(item.image)
+            .placeholder(R.drawable.placeholder)
             .into(holder.binding.coverImageView)
 
         holder.binding.root.setOnClickListener {

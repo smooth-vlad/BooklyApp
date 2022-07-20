@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
                     if (index < carouselItems.size) {
                         Glide.with(this@MainActivity)
                             .load(carouselItems[index].image)
+                            .placeholder(R.drawable.placeholder)
                             .into(view as ImageView)
                     }
                 }

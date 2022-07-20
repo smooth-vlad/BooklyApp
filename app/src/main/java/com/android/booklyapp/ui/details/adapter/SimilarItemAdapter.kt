@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.android.booklyapp.R
 import com.android.booklyapp.data.ebook_api.classes.BookImage
 import com.android.booklyapp.databinding.SimilarItemBinding
 import com.bumptech.glide.Glide
@@ -21,6 +22,7 @@ class SimilarItemAdapter(private val data: List<BookImage>) : Adapter<SimilarIte
         val item = data[position]
         Glide.with(holder.binding.root)
             .load(item.image)
+            .placeholder(R.drawable.placeholder)
             .into(holder.binding.similarCoverImageView)
     }
 
