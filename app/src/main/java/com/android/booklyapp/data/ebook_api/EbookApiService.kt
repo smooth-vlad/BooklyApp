@@ -10,4 +10,7 @@ interface EbookApiService {
 
     @GET("similar/")
     suspend fun getSimilar(): List<BookImage>
+
+    @GET("carousel/")
+    suspend fun getCarouselBooks(): List<BookImage>
 }
