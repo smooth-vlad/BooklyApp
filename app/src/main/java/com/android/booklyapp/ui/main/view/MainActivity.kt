@@ -1,6 +1,7 @@
 package com.android.booklyapp.ui.main.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.constraintlayout.helper.widget.Carousel
 import com.android.booklyapp.R
+import com.android.booklyapp.data.ebook_api.classes.BookImage
 import com.android.booklyapp.databinding.ActivityMainBinding
 import com.android.booklyapp.ui.App
 import com.android.booklyapp.ui.main.adapter.BestSellerItemAdapter
@@ -35,15 +37,25 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.carouselBooks.observe(this) { carouselItems ->
-            Glide.with(this)
-                .load(carouselItems[0].image)
-                .into(binding.imageView0)
-            Glide.with(this)
-                .load(carouselItems[1].image)
-                .into(binding.imageView1)
-            Glide.with(this)
-                .load(carouselItems[2].image)
-                .into(binding.imageView2)
+            binding.carousel.setAdapter(object : Carousel.Adapter {
+                override fun count(): Int {
+                    return carouselItems.size
+                }
+
+                override fun populate(view: View?, index: Int) {
+                    Log.d("MainActivity", index.toString())
+                    if (index < carouselItems.size) {
+                        Glide.with(this@MainActivity)
+                            .load(carouselItems[index].image)
+                            .into(view as ImageView)
+                    }
+                }
+
+                override fun onNewItem(index: Int) {
+                }
+
+            })
+            binding.carousel.refresh()
         }
 
         binding.toolbar.title = ""
